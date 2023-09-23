@@ -6,11 +6,6 @@ This application was created to monitoring stock quote, It's an application usin
 
 Change the SendsGrid KEY in the appsettings file.
 
-Value:
-```bash
-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
-```
-
 ## Run the app
 
 You can run the application through Visual Studio or using command line.
