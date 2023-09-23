@@ -4,6 +4,6 @@ namespace Infrastructure.Adapters.StockQuotation
 {
     public interface IStockQuotationAdapter
     {
-        public Task<StockData> Get(string symbol);
+        public Task<StockData> GetStockPriceAsync(string symbol, CancellationToken cancellationToken);
     }
 }

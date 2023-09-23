@@ -23,11 +23,11 @@ namespace Infrastructure.Adapters.StockQuotation
             _logger = logger;
         }
 
-        public async Task<StockData> Get(string symbol)
+        public async Task<StockData> GetStockPriceAsync(string symbol, CancellationToken cancellationToken)
         {
             try
             {
-                using var httpResponse = await _httpClient.GetAsync(_configs.GetUrl(symbol));
+                using var httpResponse = await _httpClient.GetAsync(_configs.GetUrl(symbol), cancellationToken);
 
                 if (!httpResponse.IsSuccessStatusCode)
                 {
