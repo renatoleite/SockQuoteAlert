@@ -1,9 +1,4 @@
 ﻿using Infrastructure.Adapters.Notification;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using Moq;
 using Xunit;
 using Microsoft.Extensions.Logging;
@@ -11,7 +6,6 @@ using Infrastructure.Adapters.Notification.Configs;
 using Microsoft.Extensions.Options;
 using Infrastructure.Adapters.Notification.Models;
 using Bogus;
-using FluentAssertions;
 using SendGrid;
 using SendGrid.Helpers.Mail;
 using Infrastructure.Adapters.Notification.Exceptions;
@@ -58,7 +52,7 @@ namespace UnitTests.Infrastructure.Adapters
         }
 
         [Fact]
-        public async Task ShouldLogErrorWhenThrowException()
+        public async Task ShouldThrowNotificationExceptionWhenThrowAGenericException()
         {
             // Given
             var content = GetFakeNotificationContent();
