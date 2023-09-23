@@ -4,6 +4,6 @@ namespace Infrastructure.Adapters.Notification
 {
     public interface INotificationAdapter
     {
-        Task SendAsync(NotificationContent notification, CancellationToken token);
+        Task SendAsync(NotificationContent notification, CancellationToken cancellationToken);
     }
 }

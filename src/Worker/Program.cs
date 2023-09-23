@@ -9,6 +9,7 @@ using Infrastructure.Adapters.StockQuotation.Configs;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
+using SendGrid.Extensions.DependencyInjection;
 
 using var host = CreateHostBuilder(args).Build();
 using var scope = host.Services.CreateScope();
@@ -87,5 +88,9 @@ IHostBuilder CreateHostBuilder(string[] args)
 
             services.AddSingleton<IValidator<StockInputCommand>, StockInputCommandValidation>();
             services.AddSingleton<IMonitorStockPriceUseCase, MonitorStockPriceUseCase>();
+
+            services.AddSendGrid(options =>
+                options.ApiKey = configuration.GetSection("NotificationConfiguration:SendsGridKey").Value
+            );
         });
 }
