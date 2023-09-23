@@ -16,11 +16,9 @@ namespace UnitTests.Infrastructure.Adapters
     {
         private readonly Mock<ILogger<StockQuotationAdapter>> _logger;
         private readonly Mock<IOptions<StockQuotationConfiguration>> _config;
-        private readonly Faker _faker;
 
         public StockQuotationAdapterTests()
         {
-            _faker = new Faker();
             _logger = new Mock<ILogger<StockQuotationAdapter>>();
             _config = new Mock<IOptions<StockQuotationConfiguration>>();
 
