@@ -5,11 +5,9 @@ using Infrastructure.Adapters.Notification;
 using Infrastructure.Adapters.Notification.Models;
 using Infrastructure.Adapters.StockQuotation;
 using Microsoft.Extensions.Logging;
-using System.Data;
 
 namespace Application.UseCases.MonitorStockPrice
 {
-
     public class MonitorStockPriceUseCase : IMonitorStockPriceUseCase
     {
         private readonly ILogger<MonitorStockPriceUseCase> _logger;
@@ -45,32 +43,32 @@ namespace Application.UseCases.MonitorStockPrice
                 _logger.LogInformation("{UseCase} - Starting monitoring stock price; Symbol: {symbol}",
                     nameof(MonitorStockPriceUseCase), command.Symbol);
 
-                var price = default(double);
+                var stockPrice = default(double);
                 var stockData = await _stockQuotationAdapter.GetStockPriceAsync(command.Symbol, cancellationToken);
 
-                if (stockData == null || !double.TryParse(stockData.Price, out price))
+                if (stockData == null || !double.TryParse(stockData.Price, out stockPrice))
                 {
                     _logger.LogWarning("{UseCase} - Was not possible to get stock price; Symbol: {symbol}",
                         nameof(MonitorStockPriceUseCase), command.Symbol);
                 }
 
-                if (price < command.ReferencePriceToBuy)
+                if (stockPrice < command.ReferencePriceToBuy)
                     await SendNotification(command.Symbol, true, cancellationToken);
-                else if (price > command.ReferencePriceToSell)
+                else if (stockPrice > command.ReferencePriceToSell)
                     await SendNotification(command.Symbol, false, cancellationToken);
 
-                output.AddResult(true);
+                output.AddResult($"{command.Symbol} monitored successfully");
+
+                _logger.LogInformation("{UseCase} - Finishing monitoring stock price; Symbol: {symbol}",
+                    nameof(MonitorStockPriceUseCase), command.Symbol);
             }
             catch (Exception ex)
             {
                 _logger.LogError(ex, "{UseCase} - An unexpected error has occurred; Symbol: {symbol}",
                     nameof(MonitorStockPriceUseCase), command.Symbol);
 
-                output.AddErrorMessage($"An unexpected error has occurred");
+                output.AddErrorMessage("An unexpected error has occurred");
             }
-
-            _logger.LogInformation("{UseCase} - Finishing monitoring stock price; Symbol: {symbol}",
-                nameof(MonitorStockPriceUseCase), command.Symbol);
 
             return output;
         }
