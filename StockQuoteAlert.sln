@@ -4,18 +4,21 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 VisualStudioVersion = 17.7.34018.315
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{26A392B5-E565-4447-8AF7-11F43C56BB1D}"
+	ProjectSection(SolutionItems) = preProject
+		README.md = README.md
+	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{28A5ED39-F353-41E9-8443-B0EA0048F1D6}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{CE4B8E02-6C89-4825-B7C1-6AC806C2DDA1}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnitTests", "tests\UnitTests\UnitTests.csproj", "{DB479496-2D75-4949-9F81-E4B24929942B}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnitTests", "tests\UnitTests\UnitTests.csproj", "{DB479496-2D75-4949-9F81-E4B24929942B}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Application", "src\Application\Application.csproj", "{BFE743A9-5E62-42D2-97F2-725B756D5D5E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Application", "src\Application\Application.csproj", "{BFE743A9-5E62-42D2-97F2-725B756D5D5E}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{FBB56BE3-1F08-4EB3-A551-AA2A320CB186}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Infrastructure", "src\Infrastructure\Infrastructure.csproj", "{FBB56BE3-1F08-4EB3-A551-AA2A320CB186}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Worker", "src\Worker\Worker.csproj", "{8D57DF84-07C8-457E-A37F-8E9B0109FF79}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Worker", "src\Worker\Worker.csproj", "{8D57DF84-07C8-457E-A37F-8E9B0109FF79}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
