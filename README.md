@@ -4,7 +4,12 @@ This application was created to monitoring stock quote, It's an application usin
 
 ## Configuration
 
-Change the SendsGrid connectionstring in appsettings file.
+Change the SendsGrid KEY in the appsettings file.
+
+Value:
+```bash
+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
+```
 
 ## Run the app
 

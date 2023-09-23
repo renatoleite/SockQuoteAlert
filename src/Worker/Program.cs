@@ -59,7 +59,7 @@ try
             ReferencePriceToBuy = Convert.ToDouble(buyPrice)
         }, CancellationToken.None);
 
-        Thread.Sleep(10000);
+        Thread.Sleep(30000);
     }
 }
 catch (Exception e)
@@ -82,15 +82,15 @@ IHostBuilder CreateHostBuilder(string[] args)
             services.Configure<NotificationConfiguration>(options => configuration.GetSection(nameof(NotificationConfiguration)).Bind(options));
             services.Configure<StockQuotationConfiguration>(options => configuration.GetSection(nameof(StockQuotationConfiguration)).Bind(options));
 
+            services.AddSendGrid(options =>
+                options.ApiKey = configuration.GetSection("NotificationConfiguration:SendsGridKey").Value
+            );
+
             services.AddSingleton<INotificationAdapter, NotificationAdapter>();
             services.AddSingleton<IStockQuotationAdapter, StockQuotationAdapter>();
             services.AddHttpClient<IStockQuotationAdapter, StockQuotationAdapter>();
 
             services.AddSingleton<IValidator<StockInputCommand>, StockInputCommandValidation>();
             services.AddSingleton<IMonitorStockPriceUseCase, MonitorStockPriceUseCase>();
-
-            services.AddSendGrid(options =>
-                options.ApiKey = configuration.GetSection("NotificationConfiguration:SendsGridKey").Value
-            );
         });
 }
